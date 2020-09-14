@@ -61,21 +61,38 @@ $(document).ready(function() {
     // }
   });
 
-  // Hide or show images in Gallery section
+  // Gallery section
   $('.gallery-list-item').click(function(){
     
+    // Hide or show images in Gallery section
     let value = $(this).attr('data-filter');
     if(value === 'all') {
-      $('.filter').show(300);
+      $('.gallery__all').show(300);
     }
     else {
-      $('.filter').not('.' + value).hide(300);
-      $('.filter').filter('.' + value).show(300);
+      $('.gallery__all').not('.' + 'gallery__' + value).hide(300);
+      $('.gallery__all').filter('.' + 'gallery__' + value).show(300);
     }
 
     $(this).addClass('active-item').siblings().removeClass('active-item');
+
+    // Change lightbox attribute after click
+    let tab = $(this).attr('data-filter');
+    if(tab === "new") {
+      $('.gallery__all.' + 'gallery__' + tab + '>a').attr('data-lightbox', 'gallery-new');
+    }
+    else if (tab === "free") {
+      $('.gallery__all.' + 'gallery__' + tab + '>a').attr('data-lightbox', 'gallery-free');
+    }
+    else if (tab === "pro") {
+     $('.gallery__all.' + 'gallery__' + tab + '>a').attr('data-lightbox', 'gallery-pro');
+    }
+    else {
+     $('.gallery__all>a').attr('data-lightbox', 'gallery');
+    }
   });
 
+  // Smooth scroll
   $('a[href*="#"]').not('[href="#"]').not('[href="#0"]').click(function(event) {
     if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
       var target = $(this.hash);
