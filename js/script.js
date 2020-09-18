@@ -65,31 +65,19 @@ $(document).ready(function() {
   $('.gallery-list-item').click(function(){
     
     // Hide or show images in Gallery section
+    // Change lightbox attribute after click
     let value = $(this).attr('data-filter');
     if(value === 'all') {
       $('.gallery__all').show(300);
+      $('.gallery__all>a').attr('data-lightbox', 'gallery');
     }
     else {
-      $('.gallery__all').not('.' + 'gallery__' + value).hide(300);
-      $('.gallery__all').filter('.' + 'gallery__' + value).show(300);
+      $('.gallery__all').not('.gallery__' + value).hide(300);
+      $('.gallery__all').filter('.gallery__' + value).show(300);
+      $('.gallery__all.' + 'gallery__' + value + '>a').attr('data-lightbox', 'gallery-' + value);
     }
 
     $(this).addClass('active-item').siblings().removeClass('active-item');
-
-    // Change lightbox attribute after click
-    let tab = $(this).attr('data-filter');
-    if(tab === "new") {
-      $('.gallery__all.' + 'gallery__' + tab + '>a').attr('data-lightbox', 'gallery-new');
-    }
-    else if (tab === "free") {
-      $('.gallery__all.' + 'gallery__' + tab + '>a').attr('data-lightbox', 'gallery-free');
-    }
-    else if (tab === "pro") {
-     $('.gallery__all.' + 'gallery__' + tab + '>a').attr('data-lightbox', 'gallery-pro');
-    }
-    else {
-     $('.gallery__all>a').attr('data-lightbox', 'gallery');
-    }
   });
 
   // Smooth scroll
