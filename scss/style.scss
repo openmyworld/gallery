@@ -179,6 +179,11 @@ body {
 
 .gallery__image {
   width: 300px;
+  opacity: 0.9;
+
+  &:hover {
+    opacity: 1;
+  }
 }
 
 .gallery-list-item {
